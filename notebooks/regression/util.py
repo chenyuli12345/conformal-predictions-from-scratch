@@ -8,28 +8,28 @@ def regression_plot_with_uncertainty(
     prediction_bounds,
     scatter_points,
     quantiles=[1.0],
-    labels=['Estimated Error']
+    labels=['Estimated Error'] #估计误差
 ):
     """
-    Produce a plot with the mean prediction as a line and the bounds as shaded area.
-    If multiple quantiles are given, the shaded areas are plotted sequentially starting from the largest quantile.
-    The scatter points are plotted separately.
+    绘制包含均值预测线和预测区间阴影区域的图像。
+    如果提供了多个分位数，则按照从最大分位数开始的顺序依次绘制阴影区域。
+    散点数据将单独绘制。
 
-    Parameters
+    参数情况
     ----------
-    ax : matplotlib subplot axis
-    prediction_inputs : NDArray of shape (n_samples, 1)
-        Locations where the mean and bounds are predicted
-    mean_prediction : NDArray of shape (n_samples, 1)
-        Predictive mean (standard model prediction)
-    prediction_bounds : NDArray of shape (n_samples, 2, n_quantiles)
-        Predictive upper and lower bound for the respective quantiles
+    ax : matplotlib subplot axis，子图轴对象
+    prediction_inputs : NDArray，形状为(n_samples, 1)
+        用于预测均值和预测区间的位置
+    mean_prediction : NDArray，形状为(n_samples, 1)
+        预测的均值（标准模型预测）
+    prediction_bounds : NDArray，形状为(n_samples, 2, n_quantiles)
+        各个分位数对应的预测区间的上下界
     scatter_points : Tuple[NDArray of shape (n_scatter_samples, 1), NDArray of shape (n_scatter_samples, 1)]
-        Additional inputs / labels to be plotted on top
+        需要在图像上额外绘制的输入数据/对应标签
     quantiles : list
-        A list of quantiles corresponding to the different prediction_bounds
+        包含不同预测区间对应的分位数
     labels : list
-        A list of labels corresponding to each quantile that are added to the plot's legend
+        包含每个分位数对应的标签，这些标签将添加到图例中
     """
     
     order = np.argsort(prediction_inputs[:, 0], axis=0)
